@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 '''
     Follows the mathematical definition of the discrete Fourier transform.
@@ -17,8 +18,9 @@ def dft(input):
         output.append(sum)
     return output 
 
-def twiddle(N, divisor, exp_mult):
-    exp = 2 * math.pi * (divisor/N) * exp_mult
+def twiddle(subscript, superscript):
+    exp = 2 * math.pi * (1/subscript) * superscript
+    
     return math.cos(exp) - 1.0j*math.sin(exp)
 
 
@@ -42,12 +44,10 @@ def B(m, x):
 
 # Ensure the size of the input is a power of 2
 def fft(input):
-    output = []
-    N = len(input)
-    levels = int(math.log2(len(input)))
+    # if the input size is 2, we return the trivial 2pt DFT
     
-    for i in range(0, int(N/2), 2):
-        dft_result = dft([input[i], input[int(i + N/2)]])
-        output += dft_result
+    # otherwise, further divide the DFT using recursive calls
+
+    return 0
 
 
